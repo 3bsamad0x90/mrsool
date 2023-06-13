@@ -36,12 +36,40 @@
                     {{Form::select('status',['active' => 'مفعل','inactive' => 'غير مفعل',],'',
                         ['id'=>'status', 'class'=>'form-control','required'])}}
                 </div>
-                <div class="col-12 col-md-12 d-none" id="createMainCategories">
+                <div class="col-12 col-md-12 d-none subCategory">
                     <label class="form-label" for="parent_id">{{trans('common.mainCategories')}}</label>
                     {{Form::select('parent_id',$mainCategories,'',['id'=>'parent_id','class'=>'form-control'])}}
                 </div>
+                <div class="col-12 col-md-12 d-none subCategory">
+                    <label class="form-label" for="description_ar">{{ trans('common.description_ar') }}</label>
+                    {{Form::textarea('description_ar','',['rows'=>'3','id'=>'description_ar','class'=>'form-control'])}}
+                </div>
+                <div class="col-12 col-md-12 d-none subCategory">
+                    <label class="form-label" for="description_en">{{ trans('common.description_en') }}</label>
+                    {{Form::textarea('description_en','',['rows'=>'3','id'=>'description_en','class'=>'form-control'])}}
+                </div>
+                <div class="col-12 col-md-6 d-none subCategory">
+                    <label class="form-label" for="start_work">{{ trans('common.start_work') }}</label>
+                    {{Form::time('start_work','',['id'=>'start_work','class'=>'form-control'])}}
+                </div>
+                <div class="col-12 col-md-6 d-none subCategory">
+                    <label class="form-label" for="end_work">{{ trans('common.end_work') }}</label>
+                    {{Form::time('end_work','',['id'=>'end_work','class'=>'form-control'])}}
+                </div>
+                <div class="col-12 col-md-6 d-none subCategory">
+                    <label class="form-label" for="lat">{{ trans('common.lat') }}</label>
+                    {{Form::number('lat','',['id'=>'lat','class'=>'form-control', 'step'=>'0.001', 'min'=>0])}}
+                </div>
+                <div class="col-12 col-md-6 d-none subCategory">
+                    <label class="form-label" for="lng">{{ trans('common.lng') }}</label>
+                    {{Form::number('lng','',['id'=>'lng','class'=>'form-control', 'step'=>'0.001', 'min'=>0])}}
+                </div>
+                <div class="col-12 col-md-12 d-none subCategory">
+                    <label class="form-label" for="cover">{{trans('common.cover')}}</label>
+                    {{Form::file('cover',['id'=>'cover', 'class'=>'form-control'])}}
+                </div>
                 <div class="col-12 col-md-12">
-                    <label class="form-label" for="image">{{trans('common.image')}}</label>
+                    <label class="form-label" for="image">{{trans('common.icon')}}</label>
                     {{Form::file('image',['id'=>'image', 'class'=>'form-control'])}}
                 </div>
                 <div class="col-12 text-center mt-2 pt-50">

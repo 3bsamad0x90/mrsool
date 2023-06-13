@@ -58,7 +58,7 @@
                             <th class="text-center">#</th>
                             <th class="text-center">{{trans('common.name')}}</th>
                             <th class="text-center">{{trans('common.mainCategory')}}</th>
-                            <th class="text-center">{{trans('common.image')}}</th>
+                            <th class="text-center">{{trans('common.icon')}}</th>
                             <th class="text-center">{{trans('common.status')}}</th>
                             <th class="text-center">{{trans('common.ordering')}}</th>
                             <th class="text-center">{{trans('common.actions')}}</th>
@@ -79,7 +79,7 @@
                             </td>
                             <td>
                                 <img src="{{ $category->photoLink() }}" alt="image" class="img-responsive rounded"
-                                    width="100px">
+                                    width="75px">
                             </td>
                             <td>
                                 {!! $category->checkStatus() !!}
@@ -142,13 +142,12 @@
             }
         }
     function createMainCategories(value) {
-            console.log(value);
             if (value == '1') {
-                $('#createMainCategories').show();
-                $('#createMainCategories').removeClass("d-none");
+                $('.subCategory').show();
+                $('.subCategory').removeClass("d-none");
             } else {
-                $('#createMainCategories').hide();
-                $('#createMainCategories').addClass("d-none");
+                $('.subCategory').hide();
+                $('.subCategory').addClass("d-none");
             }
         }
 </script>

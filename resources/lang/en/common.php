@@ -353,4 +353,12 @@ return [
     'subCategories' => 'Sub Categories',
     'subCategory' => 'Sub Category',
     'subOf' => 'Sub Of',
+    'end_work' => 'End Work',
+    'start_work' => 'Start Work',
+    'icon' => 'Icon',
+    'cover' => 'Cover',
+    'description_ar' => 'Description in Arabic',
+    'description_en' => 'Description in English',
+    'lat' => 'Latitude',
+    'lng' => 'Longitude',
 ];

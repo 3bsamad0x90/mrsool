@@ -2,6 +2,7 @@
 
 namespace App\Models\categories;
 
+use App\Models\admin\categories\Subcategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,6 +33,10 @@ class Category extends Model
     public function children()
     {
         return $this->hasMany(Category::class, 'parent_id');
+    }
+    public function Subcategory()
+    {
+        return $this->hasMany(Subcategory::class, 'category_id');
     }
     // check main category
     public function isMainCategory() : bool

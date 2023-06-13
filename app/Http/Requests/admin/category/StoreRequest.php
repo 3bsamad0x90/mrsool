@@ -21,7 +21,7 @@ class StoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'name_ar' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
@@ -30,5 +30,16 @@ class StoreRequest extends FormRequest
             'status' => 'nullable|in:active,inactive',
             'parent_id' => 'nullable|exists:categories,id'
         ];
+        if ($this->mainCategory == '1') {
+            $rules['parent_id'] = 'required|exists:categories,id';
+            $rules['description_ar'] = 'required|string|max:255';
+            $rules['description_en'] = 'required|string|max:255';
+            $rules['cover'] = 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048';
+            $rules['start_work'] = 'nullable|date_format:H:i';
+            $rules['end_work'] = 'nullable|date_format:H:i';
+            $rules['lat'] = 'nullable|numeric';
+            $rules['lng'] = 'nullable|numeric';
+        }
+        return $rules;
     }
 }
