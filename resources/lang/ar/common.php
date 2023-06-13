@@ -422,4 +422,10 @@ return [
     'AllRightsReserved' => 'كل الحقوق محفوظة',
     'ReadAllNotifications' => 'تحديد الكل كمقروء',
     'permissions' => 'الصلاحيات',
+    'appfront' => 'وجهه التطبيق',
+    'mainCategory' => 'القسم الرئيسي',
+    'siteTitle' => 'مرسول',
+    'mainCategories' => 'الأقسام الرئيسية',
+    'subCategories' => 'الأقسام الفرعية',
+    'subOf' => 'فرعي من',
 ];

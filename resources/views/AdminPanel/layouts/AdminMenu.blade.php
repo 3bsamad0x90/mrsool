@@ -60,6 +60,24 @@
 
                 </ul>
             </li>
+            <li class="nav-item">
+                <a class="d-flex align-items-center" href="#">
+                    <i data-feather="home"></i>
+                    <span class="menu-title text-truncate" data-i18n="{{trans('common.appfront')}}">
+                        {{trans('common.appfront')}}
+                    </span>
+                </a>
+                <ul class="menu-content">
+                    <li class="nav-item @if(isset($active) && $active == 'categories') active @endif">
+                        <a class="d-flex align-items-center" href="{{ route('categories.index') }}">
+                            <i data-feather='circle'></i>
+                            <span class="menu-title text-truncate" data-i18n="{{trans('common.categories')}}">
+                                {{trans('common.categories')}}
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
             <li class="nav-item @if(isset($active) && $active == 'contactMessages') active @endif">
                 <a class="d-flex align-items-center" href="{{route('admin.contactmessages')}}">

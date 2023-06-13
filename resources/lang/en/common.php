@@ -347,4 +347,10 @@ return [
     'ReadAllNotifications' => 'Read All Notifications',
     'edit' => 'Edit',
     'permissions' => 'Permissions',
+    'appfront' => 'Application Front',
+    'mainCategory' => 'Main Category',
+    'siteTitle' => 'Mrsool',
+    'subCategories' => 'Sub Categories',
+    'subCategory' => 'Sub Category',
+    'subOf' => 'Sub Of',
 ];

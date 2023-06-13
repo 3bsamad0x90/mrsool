@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Furnigoz</title>
+        <title>{{ trans('common.siteTitle') }}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -89,7 +89,7 @@
             @endif
             <div class="content">
                 <div class="title m-b-md">
-                    To Fitness
+                    Mrsool
                 </div>
                 <div class="links">
                     <a href="{{ route('admin.index') }}">

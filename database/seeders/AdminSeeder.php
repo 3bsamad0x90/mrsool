@@ -26,20 +26,26 @@ class AdminSeeder extends Seeder
         ]);
         User::create([
             'name' => 'admin',
-            'username' => 'admin',
-            'email' => 'admin@admin.com',
-            'password' => bcrypt('password'),
             'phone' => '01013014910',
+            'email' => 'admin@admin.com',
             'email_verified_at' => now(),
+            'password' => bcrypt('password'),
+            'active' => '1',
+            'language' => 'en',
+            'gender' => 'male',
+            'dob' => '1999-01-20',
             'role_id' => $adminRole->id
         ]);
         User::create([
             'name' => 'user',
-            'username' => 'user',
-            'email' => 'user@user.com',
-            'password' => bcrypt('password'),
             'phone' => '01013014910',
+            'email' => 'user@user.com',
             'email_verified_at' => now(),
+            'password' => bcrypt('password'),
+            'active' => '1',
+            'language' => 'en',
+            'gender' => 'male',
+            'dob' => '1999-01-20',
             'role_id' => $userRole->id
         ]);
     }

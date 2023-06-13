@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AdminPanelController;
 use App\Http\Controllers\admin\AdminUsersController;
 use App\Http\Controllers\admin\BlogsController;
+use App\Http\Controllers\admin\categories\CategoryController;
 use App\Http\Controllers\admin\ContactMessagesController;
 use App\Http\Controllers\admin\mainPageController;
 use App\Http\Controllers\admin\PagesController;
@@ -68,5 +69,8 @@ Route::group(['prefix' => 'AdminPanel', 'middleware' => ['role:admin', 'auth']],
         Route::post('/', [SettingsController::class, 'update'])->name('settings.update');
         Route::get('/{key}/deletePhoto', [SettingsController::class, 'deleteSettingPhoto'])->name('settings.deletePhoto');
     });
+
+    Route::resource('categories', CategoryController::class);
+
 
 });
