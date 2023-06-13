@@ -29,4 +29,5 @@ return [
     'CartUpdatedSuccessfully' => 'تم تحديث السلة بنجاح',
     'CartClearedSuccessfully' => 'تم إفراغ السلة بنجاح',
     'CartIsEmpty' => 'السلة فارغة',
+    'dataSendSuccessfully' => 'تم إرسال البيانات بنجاح',
 ];

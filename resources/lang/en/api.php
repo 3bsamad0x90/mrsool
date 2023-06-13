@@ -28,4 +28,5 @@ return [
     'CartUpdatedSuccessfully' => 'Cart Updated Successfully',
     'CartClearedSuccessfully' => 'Cart Cleared Successfully',
     'CartIsEmpty' => 'Cart Is Empty',
+    'dataSendSuccessfully' => 'Data Send Successfully',
 ];

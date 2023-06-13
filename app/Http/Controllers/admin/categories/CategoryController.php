@@ -7,7 +7,8 @@ use App\Http\Requests\admin\category\StoreRequest;
 use App\Http\Requests\admin\category\UpdateRequest;
 use App\Models\categories\Category;
 use Illuminate\Http\Request;
-
+use File;
+use Response;
 class CategoryController extends Controller
 {
     /**
@@ -42,9 +43,6 @@ class CategoryController extends Controller
         ], compact('categories', 'mainCategories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreRequest $request)
     {
         $category = Category::create($request->validated());
@@ -63,7 +61,6 @@ class CategoryController extends Controller
 
     public function update(UpdateRequest $request, Category $category)
     {
-        dd($request->all());
         $category->update($request->except('_token', 'image'));
         if ($request->mainCategory == 0) {
             $category->update(['parent_id' => 0]);
@@ -84,11 +81,18 @@ class CategoryController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $id = $category->id;
+        if ($category->image != '') {
+            File::deleteDirectory(public_path('uploads/categories/' . $category->id),);
+        }
+        if ($category) {
+            $category->subcategories()->delete();
+            $category->delete();
+            return Response::json($id);
+        } else {
+            return Response::json("false");
+        }
     }
 }

@@ -1,14 +1,7 @@
 <?php
 
-use App\Http\Controllers\api\AuthinticationController;
-use App\Http\Controllers\api\CardController;
-use App\Http\Controllers\api\ContactMessagesController;
-use App\Http\Controllers\api\OrdersController;
-use App\Http\Controllers\api\PagesController;
-use App\Http\Controllers\api\ProductsController;
-use App\Http\Controllers\api\ReviewController;
-use App\Http\Controllers\api\StaticPagesController;
-use App\Http\Controllers\api\UserController;
+
+use App\Http\Controllers\api\home\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group(['prefix' => 'home'], function(){
+    Route::get('/', [HomeController::class, 'index']);
+});
