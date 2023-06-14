@@ -361,4 +361,5 @@ return [
     'description_en' => 'Description in English',
     'lat' => 'Latitude',
     'lng' => 'Longitude',
+    'details' => 'Details',
 ];

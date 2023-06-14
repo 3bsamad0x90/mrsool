@@ -27,5 +27,6 @@ Route::group(['prefix' => 'home'], function(){
 
 Route::group(['prefix' => 'stores'], function(){
     Route::get('/{category}', [CategoryController::class, 'index']);
+    Route::get('/details/{category}', [CategoryController::class, 'show']);
 });
 

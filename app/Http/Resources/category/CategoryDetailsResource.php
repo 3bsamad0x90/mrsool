@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\home;
+namespace App\Http\Resources\category;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryResource extends JsonResource
+class CategoryDetailsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,17 +16,15 @@ class CategoryResource extends JsonResource
     {
         $lang = $request->header('Accept-Language');
         $subCat = $this->Subcategory->first();
-        $data = [
+        return [
             'id' => $this->id,
             'name' => $lang == 'ar' ? $this->name_ar : $this->name_en,
+            'description' => $lang == 'ar' ? $subCat->description_ar : $subCat->description_en,
             'icon' => asset('uploads/categories/' .$this->id .'/' . $this->image),
+            'cover' => asset('uploads/subcategories/' . $this->id . '/' . $subCat->cover),
+            'location' => 'loc',
+            'rating' => '0',
+            'open' => $subCat->isOpen(),
         ];
-        if($this->mainCategory != '0'){
-            $data['cover'] = asset('uploads/subcategories/' . $this->id . '/' . $subCat->cover);
-            $data['location'] = 'loc';
-            $data['rating'] = '0';
-            $data['open'] = $subCat->isOpen();
-        }
-        return $data;
     }
 }
