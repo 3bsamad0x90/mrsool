@@ -4,10 +4,12 @@ namespace App\Http\Controllers\admin\stores;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\stores\StoreRequest;
+use App\Http\Requests\stores\UpdateRequest;
 use App\Models\stores\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use File;
+use Response;
 class StoreController extends Controller
 {
     public function index()
@@ -61,6 +63,41 @@ class StoreController extends Controller
             }
         } catch (\Exception $e) {
             return $e->getMessage();
+        }
+    }
+    public function update(UpdateRequest $request, Store $store)
+    {
+        $store->update($request->except('_token', 'image'));
+        if ($request->mainCategory == 0) {
+            $store->update(['parent_id' => 0]);
+        }
+        if ($request->hasFile('image')) {
+            if ($store->image != '' && file_exists(public_path('uploads/stores/' . $store->id . '/' . $store->image))) {
+                unlink(public_path('uploads/stores/' . $store->id . '/' . $store->image));
+            }
+            $store['image'] = upload_image('stores/' . $store->id, $request->image);
+            $store->update();
+        }
+        if ($store) {
+            return redirect()->route('stores.index')
+            ->with('success', 'تم تعديل البيانات بنجاح');
+        } else {
+            return redirect()->back()
+                ->with('failed', 'لم نستطع تعديل البيانات');
+        }
+    }
+    public function destroy(Store $store)
+    {
+        $id = $store->id;
+        if ($store->image != '') {
+            File::deleteDirectory(public_path('uploads/stores/' . $store->id),);
+        }
+        if ($store) {
+            $store->subcategories()->delete();
+            $store->delete();
+            return Response::json($id);
+        } else {
+            return Response::json("false");
         }
     }
 }

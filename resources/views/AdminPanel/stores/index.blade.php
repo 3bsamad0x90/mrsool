@@ -134,11 +134,11 @@
     function updateMainStores(value, id) {
             console.log(value);
             if (value == '1') {
-                $('#updatemainStores'+id).show();
-                $('#updatemainStores'+id).removeClass("d-none");
+                $('#updateMainStores'+id).show();
+                $('#updateMainStores'+id).removeClass("d-none");
             } else {
-                $('#updatemainStores'+id).hide();
-                $('#updatemainStores'+id).addClass("d-none");
+                $('#updateMainStores'+id).hide();
+                $('#updateMainStores'+id).addClass("d-none");
             }
         }
     function createMainStores(value) {
