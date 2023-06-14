@@ -31,5 +31,17 @@ class Subcategory extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
-    
+    // check if category is already associated with category object and return associated  category object
+    public function hasCategory()
+    {
+        return $this->category()->count() > 0;
+    }
+    public function isOpen()
+    {
+        $now = date('H:i:s');
+        if ($now >= $this->start_work && $now <= $this->end_work) {
+            return true;
+        }
+        return false;
+    }
 }

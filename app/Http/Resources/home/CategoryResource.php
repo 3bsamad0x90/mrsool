@@ -15,10 +15,16 @@ class CategoryResource extends JsonResource
     public function toArray(Request $request): array
     {
         $lang = $request->header('Accept-Language');
-        return [
+        $data = [
             'id' => $this->id,
             'name' => $lang == 'ar' ? $this->name_ar : $this->name_en,
             'icon' => asset('uploads/categories/' .$this->id .'/' . $this->image),
         ];
+        if($this->mainCategory != '0'){
+            $data['location'] = 'loc';
+            $data['rating'] = '0';
+            $data['open'] = $this->isOpen();
+        }
+        return $data;
     }
 }

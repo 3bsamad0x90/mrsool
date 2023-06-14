@@ -71,4 +71,12 @@ class Category extends Model
         else
             return "<span class='badge badge-light-danger'>غير مفعل</span>";
     }
+    public function isOpen(){
+        $now = date('H:i:s');
+        $subCat = $this->Subcategory()->first();
+        if($now >= $subCat->start_work && $now <= $subCat->end_work){
+            return true;
+        }
+        return false;
+    }
 }

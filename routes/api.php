@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\api\home\HomeController;
+use App\Http\Controllers\api\stores\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'home'], function(){
     Route::get('/', [HomeController::class, 'index']);
 });
+
+Route::group(['prefix' => 'stores'], function(){
+    Route::get('/{category}', [CategoryController::class, 'index']);
+});
+
