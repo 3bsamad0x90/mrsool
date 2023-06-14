@@ -362,4 +362,11 @@ return [
     'lat' => 'Latitude',
     'lng' => 'Longitude',
     'details' => 'Details',
+    'stores' => 'Stores',
+    'mainStore' => 'Main Store',
+    'yes' => 'Yes',
+    'noSubStores' => 'No Sub Stores',
+    'active' => 'Active',
+    'inactive' => 'Inactive',
+    'cover' => 'Cover',
 ];

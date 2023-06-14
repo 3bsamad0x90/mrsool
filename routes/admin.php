@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\PagesController;
 use App\Http\Controllers\admin\PermissionsController;
 use App\Http\Controllers\admin\RolesController;
 use App\Http\Controllers\admin\SettingsController;
+use App\Http\Controllers\admin\stores\StoreController;
 use App\Http\Controllers\admin\TestimonialsController;
 use Illuminate\Support\Facades\Route;
 
@@ -71,6 +72,7 @@ Route::group(['prefix' => 'AdminPanel', 'middleware' => ['role:admin', 'auth']],
     });
 
     Route::resource('categories', CategoryController::class);
+    Route::resource('stores', StoreController::class);
 
 
 });

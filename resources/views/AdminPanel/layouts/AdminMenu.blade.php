@@ -76,6 +76,14 @@
                             </span>
                         </a>
                     </li>
+                    <li class="nav-item @if(isset($active) && $active == 'stores') active @endif">
+                        <a class="d-flex align-items-center" href="{{ route('stores.index') }}">
+                            <i data-feather='circle'></i>
+                            <span class="menu-title text-truncate" data-i18n="{{trans('common.stores')}}">
+                                {{trans('common.stores')}}
+                            </span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 

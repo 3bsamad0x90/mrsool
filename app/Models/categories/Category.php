@@ -3,6 +3,7 @@
 namespace App\Models\categories;
 
 use App\Models\admin\categories\Subcategory;
+use App\Models\ads\Advertisement;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -78,5 +79,9 @@ class Category extends Model
             return true;
         }
         return false;
+    }
+    public function advertisements()
+    {
+        return $this->morphMany(Advertisement::class, 'imageable');
     }
 }
