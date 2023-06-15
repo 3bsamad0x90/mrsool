@@ -2,6 +2,7 @@
 
 namespace App\Models\stores;
 
+use App\Models\stores\Substore;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -33,13 +34,18 @@ class Store extends Model
     {
         return $this->hasMany(Store::class, 'parent_id');
     }
+    // sub Sore
+    public function subStore()
+    {
+        return $this->hasMany(Substore::class, 'store_id');
+    }
     // check main store
     public function isMainStore() : bool
     {
         return $this->parent_id == 0;
     }
     // check sub store
-    public function isSubStore()
+    public function isSubStore() : bool
     {
         return $this->parent_id != 0;
     }
@@ -66,14 +72,14 @@ class Store extends Model
         else
             return "<span class='badge badge-light-danger'>غير مفعل</span>";
     }
-    // public function isOpen()
-    // {
-    //     $now = date('H:i:s');
-    //     $subCat = $this->Subcategory()->first();
-    //     if ($now >= $subCat->start_work && $now <= $subCat->end_work) {
-    //         return true;
-    //     }
-    //     return false;
-    // }
+    public function isOpen()
+    {
+        $now = date('H:i:s');
+        $subCat = $this->Subcategory()->first();
+        if ($now >= $subCat->start_work && $now <= $subCat->end_work) {
+            return true;
+        }
+        return false;
+    }
 
 }

@@ -68,19 +68,19 @@
                     </span>
                 </a>
                 <ul class="menu-content">
-                    <li class="nav-item @if(isset($active) && $active == 'categories') active @endif">
-                        <a class="d-flex align-items-center" href="{{ route('categories.index') }}">
-                            <i data-feather='circle'></i>
-                            <span class="menu-title text-truncate" data-i18n="{{trans('common.categories')}}">
-                                {{trans('common.categories')}}
-                            </span>
-                        </a>
-                    </li>
                     <li class="nav-item @if(isset($active) && $active == 'stores') active @endif">
                         <a class="d-flex align-items-center" href="{{ route('stores.index') }}">
                             <i data-feather='circle'></i>
                             <span class="menu-title text-truncate" data-i18n="{{trans('common.stores')}}">
                                 {{trans('common.stores')}}
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item @if(isset($active) && $active == 'categories') active @endif">
+                        <a class="d-flex align-items-center" href="#">
+                            <i data-feather='circle'></i>
+                            <span class="menu-title text-truncate" data-i18n="{{trans('common.categories')}}">
+                                {{trans('common.categories')}}
                             </span>
                         </a>
                     </li>

@@ -3,34 +3,34 @@
 namespace App\Http\Controllers\api\stores;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\category\CategoryDetailsResource;
-use App\Http\Resources\home\CategoryResource;
-use App\Models\categories\Category;
+use App\Http\Resources\stores\StoreDetailsResource;
+use App\Http\Resources\home\StoresResource;
+use App\Models\stores\Store;
 use App\Traits\messageTrait;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class StoreController extends Controller
 {
     use messageTrait;
-    public function index(Request $request, Category $category){
+    public function index(Request $request, Store $store){
         $lang = $request->header('Accept-Language');
         if ($lang == '') {
             return $this->failed(trans('api.pleaseSendLangCode'));
         }
-        $categories = Category::with('Subcategory')->where('parent_id', $category->id)->whereStatus('active')->get();
+        $stores = Store::with('subStore')->where('parent_id', $store->id)->whereStatus('active')->get();
         return $this->successfully(trans('api.dataSendSuccessfully'), [
-            'categories' => CategoryResource::collection($categories)
+            'stores' => StoresResource::collection($stores)
         ]);
     }
-    public function show(Request $request, Category $category){
+    public function show(Request $request, Store $store){
         $lang = $request->header('Accept-Language');
         if ($lang == '') {
             return $this->failed(trans('api.pleaseSendLangCode'));
         }
-        if(!$category->hasChildren()){
-            $categories = Category::with('Subcategory')->where('id', $category->id)->whereStatus('active')->first();
+        if(!$store->hasChildren()){
+            $store = Store::with('subStore')->where('id', $store->id)->whereStatus('active')->first();
             return $this->successfully(trans('api.dataSendSuccessfully'), [
-                'category' => new CategoryDetailsResource($categories)
+                'store' => new StoreDetailsResource($store)
             ]);
         }
         return $this->failed(trans('api.noDataFound'));

@@ -2,7 +2,7 @@
 
 
 use App\Http\Controllers\api\home\HomeController;
-use App\Http\Controllers\api\stores\CategoryController;
+use App\Http\Controllers\api\stores\StoreController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +26,7 @@ Route::group(['prefix' => 'home'], function(){
 });
 
 Route::group(['prefix' => 'stores'], function(){
-    Route::get('/{category}', [CategoryController::class, 'index']);
-    Route::get('/details/{category}', [CategoryController::class, 'show']);
+    Route::get('/{store}', [StoreController::class, 'index']);
+    Route::get('/details/{store}', [StoreController::class, 'show']);
 });
 

@@ -16,7 +16,7 @@ class Locale
      */
     public function handle($request, Closure $next)
     {
-        date_default_timezone_set('Asia/Dubai');
+        date_default_timezone_set('Africa/Cairo');
         if ($request->hasHeader("Accept-Language")) {
             App::setLocale($request->header("Accept-Language"));
         } else {

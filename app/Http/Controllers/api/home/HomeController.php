@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\api\home;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\home\CategoryResource;
-use App\Models\categories\Category;
+use App\Http\Resources\home\StoresResource;
+use App\Models\stores\Store;
 use App\Traits\messageTrait;
 use Illuminate\Http\Request;
 
@@ -16,8 +16,8 @@ class HomeController extends Controller
         if ($lang == '') {
             return $this->failed(trans('api.pleaseSendLangCode'));
         }
-        $categories = Category::where('mainCategory', '0')->whereStatus('active')->get();
+        $stores = Store::where('mainStore', '0')->whereStatus('active')->get();
         return $this->successfully(trans('api.dataSendSuccessfully'),
-            ['categories' => CategoryResource::collection($categories)]);
+            ['stores' => StoresResource::collection($stores)]);
     }
 }
