@@ -2,16 +2,14 @@
 
 use App\Http\Controllers\admin\AdminPanelController;
 use App\Http\Controllers\admin\AdminUsersController;
-use App\Http\Controllers\admin\BlogsController;
 use App\Http\Controllers\admin\categories\CategoryController;
 use App\Http\Controllers\admin\ContactMessagesController;
-use App\Http\Controllers\admin\mainPageController;
+use App\Http\Controllers\admin\country\CountriesController;
 use App\Http\Controllers\admin\PagesController;
 use App\Http\Controllers\admin\PermissionsController;
 use App\Http\Controllers\admin\RolesController;
 use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\admin\stores\StoreController;
-use App\Http\Controllers\admin\TestimonialsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -73,6 +71,6 @@ Route::group(['prefix' => 'AdminPanel', 'middleware' => ['role:admin', 'auth']],
 
     Route::resource('categories', CategoryController::class);
     Route::resource('stores', StoreController::class);
-
+    Route::resource('countries', CountriesController::class);
 
 });

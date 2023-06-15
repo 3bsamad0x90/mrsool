@@ -15,9 +15,13 @@
         }).then(function (result) {
             if (result.value) {
                 $.ajax({
-                    method   : 'get',
+                    method   : 'delete',
                     url      : url,
                     dataType : 'json',
+                    data:{
+                        "_token": "{{ csrf_token() }}",
+                        "id": id
+                    },
                     success : function(data){
                         if(data != "false"){
                             Swal.fire({

@@ -60,6 +60,24 @@
 
                 </ul>
             </li>
+            <li class=" nav-item">
+                <a class="d-flex align-items-center" href="#">
+                    <i data-feather="map-pin"></i>
+                    <span class="menu-title text-truncate" data-i18n="{{trans('common.LocalesManagment')}}">
+                        {{trans('common.LocalesManagment')}}
+                    </span>
+                </a>
+                <ul class="menu-content">
+                    <li @if(isset($active) && $active=='countries' ) class="active" @endif>
+                        <a class="d-flex align-items-center" href="{{route('countries.index')}}">
+                            <i data-feather="circle"></i>
+                            <span class="menu-item text-truncate" data-i18n="{{trans('common.Countries')}}">
+                                {{trans('common.Countries')}}
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="nav-item">
                 <a class="d-flex align-items-center" href="#">
                     <i data-feather="home"></i>

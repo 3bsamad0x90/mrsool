@@ -369,4 +369,8 @@ return [
     'active' => 'Active',
     'inactive' => 'Inactive',
     'cover' => 'Cover',
+    'countryCode' => 'Country Code',
+    'maxNumber' => 'Max Number',
+    'flag' => 'Flag',
+    'iso' => 'iso'
 ];

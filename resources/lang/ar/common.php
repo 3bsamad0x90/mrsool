@@ -443,4 +443,8 @@ return [
     'active' =>  'مفعل',
     'inactive' => 'غير مفعل',
     'cover' => 'الغلاف',
+    'countryCode' => 'كود الدولة',
+    'maxNumber' => 'أقصى عدد',
+    'flag' => 'العلم',
+    'iso' => 'iso'
 ];
