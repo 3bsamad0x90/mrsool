@@ -4,10 +4,11 @@ namespace App\Http\Controllers\admin\country;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\country\StoreRequest;
+use App\Http\Requests\country\UpdateRequest;
 use App\Models\country\Country;
+use File;
 use Illuminate\Http\Request;
 use Response;
-use File;
 
 class CountriesController extends Controller
 {
@@ -40,15 +41,19 @@ class CountriesController extends Controller
             return redirect()->back()
                             ->with('faild',trans('common.faildMessageText'));
         }
-
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, Country $country)
     {
-        $user = Countries::find($id);
-        $data = $request->except(['_token']);
-
-        $update = Countries::find($id)->update($data);
+        $data = $request->except(['_token', 'flag']);
+        $update = $country->update($data);
+        if ($request->hasFile('flag')) {
+            if ($country->flag != '') {
+                File::deleteDirectory(public_path('uploads/countries/' . $country->id),);
+            }
+            $country['flag'] = upload_image('countries/' . $country->id, $request->flag);
+            $country->update();
+        }
         if ($update) {
             return redirect()->back()
                             ->with('success',trans('common.successMessageText'));

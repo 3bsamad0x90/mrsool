@@ -59,7 +59,7 @@
                                         {{$country->governorates()->count()}}
                                     </a> --}}
                                     <a href="#">
-                                        -
+                                        0
                                     </a>
                                 </td>
                                 <td>

@@ -9,7 +9,7 @@
                     <h1 class="mb-1">{{trans('common.edit')}}</h1>
                 </div>
                 {{Form::open(['url'=>route('countries.update',['country'=>$country->id]), 'id'=>'editCountryForm',
-                'class'=>'row gy-1 pt-75'])}}
+                'class'=>'row gy-1 pt-75', 'files'=>true])}}
                 @method('PUT')
                <div class="col-12 col-md-6">
                     <label class="form-label" for="name_ar">{{trans('common.name_ar')}}</label>
