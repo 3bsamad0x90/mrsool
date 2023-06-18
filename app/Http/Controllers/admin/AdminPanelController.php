@@ -94,24 +94,6 @@ class AdminPanelController extends Controller
                 ->with('faild', trans('common.faildMessageText'));
         }
     }
-    public function notificationDetails($id)
-    {
-        $Notification = DatabaseNotification::find($id);
-        $Notification->markAsRead();
-
-        if (in_array($Notification['data']['type'], ['newPublisher'])) {
-            return redirect()->route('admin.publisherUsers.edit', ['id' => $Notification['data']['linked_id']]);
-        }
-        if (in_array($Notification['data']['type'], ['newPublisherMessage'])) {
-            return redirect()->route('admin.contactmessages.details', ['id' => $Notification['data']['linked_id']]);
-        }
-        if (in_array($Notification['data']['type'], ['newBookReview'])) {
-            return redirect()->route('admin.books.reviews', ['id' => $Notification['data']['linked_id']]);
-        }
-
-        return redirect()->back();
-    }
-
     public function readAllNotifications()
     {
         auth()->user()->unreadNotifications->markAsRead();

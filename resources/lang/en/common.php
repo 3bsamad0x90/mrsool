@@ -376,5 +376,6 @@ return [
     'gender' => 'Gender',
     'male' => 'Male',
     'female' => 'Female',
+    'dob' => 'Date Of Birth',
 
 ];

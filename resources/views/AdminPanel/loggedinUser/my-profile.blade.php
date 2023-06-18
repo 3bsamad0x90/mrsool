@@ -17,7 +17,6 @@
                 </a>
             </li>
         </ul>
-
         <!-- profile -->
         <div class="card">
             <div class="card-header border-bottom">
@@ -67,7 +66,7 @@
                     </div>
                     <div class="col-12 col-sm-3 mb-1">
                         <label class="form-label" for="country_id">{{trans('common.country')}}</label>
-                        {{Form::select('country_id', $countries ,auth()->user()->country,
+                        {{Form::select('country_id', $countries ,auth()->user()->country_id,
                         ['id'=>'country_id','class'=>'form-control selectpicker','data-live-search'=>'true'])}}
                     </div>
 

@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\api\home\CountryController;
 use App\Http\Controllers\api\home\HomeController;
 use App\Http\Controllers\api\stores\StoreController;
 use Illuminate\Http\Request;
@@ -30,3 +31,6 @@ Route::group(['prefix' => 'stores'], function(){
     Route::get('/details/{store}', [StoreController::class, 'show']);
 });
 
+Route::group(['prefix'=> 'countries'], function(){
+    Route::get('/', [CountryController::class, 'index']);
+});
