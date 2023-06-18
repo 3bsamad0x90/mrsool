@@ -15,7 +15,7 @@ class StoreController extends Controller
     public function index()
     {
         $stores = Store::orderBy('mainStore', 'asc')
-                ->orderBy('ordering', 'asc')->paginate(25);
+                ->orderBy('ordering', 'asc')->paginate(20);
         $stores->load('parent');
         $mainStores = Store::where('parent_id', 0)->pluck('name_' . app()->getLocale(), 'id')->toArray();
         return view('AdminPanel.stores.index', [

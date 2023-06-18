@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Substore extends Model
 {
     use HasFactory;
+    protected $table = 'substores';
     protected $fillable = [
         "store_id",
         "description_ar",

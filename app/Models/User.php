@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\country\Country;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,14 +20,15 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'username',
         'email',
         'password',
         'phone',
-        'address',
+        'language',
+        'gender',
         'role',
-        'photo',
-        'country',
+        'image',
+        'country_id',
+        'dob',
     ];
 
     /**
@@ -64,10 +66,13 @@ class User extends Authenticatable
     {
         $image = asset('AdminAssets/app-assets/images/portrait/small/avatar.png');
 
-        if ($this->photo != '') {
-            $image = asset('uploads/users/' . $this->id . '/' . $this->photo);
+        if ($this->image != '') {
+            $image = asset('uploads/users/' . $this->id . '/' . $this->image);
         }
 
         return $image;
+    }
+    public function country(){
+        return $this->belongsTo(Country::class, 'country_id');
     }
 }

@@ -372,5 +372,9 @@ return [
     'countryCode' => 'Country Code',
     'maxNumber' => 'Max Number',
     'flag' => 'Flag',
-    'iso' => 'iso'
+    'iso' => 'iso',
+    'gender' => 'Gender',
+    'male' => 'Male',
+    'female' => 'Female',
+
 ];

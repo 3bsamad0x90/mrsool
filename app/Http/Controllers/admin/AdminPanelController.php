@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\users\UpdateUser;
-use Illuminate\Notifications\DatabaseNotification;
-use Illuminate\Support\Facades\Validator;
+use App\Models\country\Country;
 use App\Models\User;
 use Auth;
+use Illuminate\Http\Request;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Support\Facades\Validator;
 
 class AdminPanelController extends Controller
 {
@@ -23,6 +24,7 @@ class AdminPanelController extends Controller
 
     public function edit()
     {
+        $countries = Country::pluck('name_'.app()->getLocale(), 'id')->toArray();
         return view('AdminPanel.loggedinUser.my-profile', [
             'active' => 'my-profile',
             'title' => trans('common.Profile'),
@@ -32,9 +34,26 @@ class AdminPanelController extends Controller
                     'text' => trans('common.Account')
                 ]
             ]
-        ]);
+        ], compact('countries'));
     }
-
+    public function update(Request $request)
+    {
+        $data = $request->except(['_token', 'image']);
+        if ($request->image != '') {
+            if (auth()->user()->image != '') {
+                delete_image('users/' . auth()->user()->id, auth()->user()->image);
+            }
+            $data['image'] = upload_image('users/' . auth()->user()->id, $request->image);
+        }
+        $update = User::find(auth()->user()->id)->update($data);
+        if ($update) {
+            return redirect()->back()
+                ->with('success', trans('common.successMessageText'));
+        } else {
+            return redirect()->back()
+                ->with('faild', trans('common.faildMessageText'));
+        }
+    }
 
     public function EditPassword()
     {
@@ -75,26 +94,6 @@ class AdminPanelController extends Controller
                 ->with('faild', trans('common.faildMessageText'));
         }
     }
-
-    public function update(Request $request)
-    {
-        $data = $request->except(['_token', 'photo']);
-        if ($request->photo != '') {
-            if (auth()->user()->photo != '') {
-                delete_image('users/' . auth()->user()->id, auth()->user()->photo);
-            }
-            $data['photo'] = upload_image('users/' . auth()->user()->id, $request->photo);
-        }
-        $update = User::find(auth()->user()->id)->update($data);
-        if ($update) {
-            return redirect()->back()
-                ->with('success', trans('common.successMessageText'));
-        } else {
-            return redirect()->back()
-                ->with('faild', trans('common.faildMessageText'));
-        }
-    }
-
     public function notificationDetails($id)
     {
         $Notification = DatabaseNotification::find($id);

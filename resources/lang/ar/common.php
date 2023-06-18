@@ -446,5 +446,8 @@ return [
     'countryCode' => 'كود الدولة',
     'maxNumber' => 'أقصى عدد',
     'flag' => 'العلم',
-    'iso' => 'iso'
+    'iso' => 'iso',
+    'gender' => 'الجنس',
+    'male' => 'ذكر',
+    'female' => 'أنثي'
 ];

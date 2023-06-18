@@ -21,7 +21,7 @@ class StoresResource extends JsonResource
             'name' => $lang == 'ar' ? $this->name_ar : $this->name_en,
             'icon' => asset('uploads/stores/' .$this->id .'/' . $this->image),
         ];
-        if($this->mainCategory != '0'){
+        if($this->mainStore != '0'){
             $data['cover'] = asset('uploads/substores/' . $subStore->id . '/' . $subStore->cover);
             $data['location'] = 'loc';
             $data['rating'] = '0';
