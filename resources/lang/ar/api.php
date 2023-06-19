@@ -30,4 +30,6 @@ return [
     'CartClearedSuccessfully' => 'تم إفراغ السلة بنجاح',
     'CartIsEmpty' => 'السلة فارغة',
     'dataSendSuccessfully' => 'تم إرسال البيانات بنجاح',
+    'OtpDoesNotMatch' => 'الكود الذي قمت بإدخاله غير صحيح',
+    'invalidOtp' => 'الكود الذي قمت بإدخاله غير صحيح',
 ];

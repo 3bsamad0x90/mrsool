@@ -12,6 +12,9 @@ class otpVerification extends Model
     protected $fillable = [
         'otp',
         'phone_number',
+        'country_code',
+        'country_id',
+        'is_active'
     ];
 
 }

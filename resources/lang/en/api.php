@@ -29,4 +29,6 @@ return [
     'CartClearedSuccessfully' => 'Cart Cleared Successfully',
     'CartIsEmpty' => 'Cart Is Empty',
     'dataSendSuccessfully' => 'Data Send Successfully',
+    'OtpDoesNotMatch' => 'Otp Does Not Match',
+    'invalidOtp' => 'invalid Otp',
 ];
