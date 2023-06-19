@@ -132,6 +132,21 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
+            'title_ar' => 'title in arabic',
+            'title_en' => 'title in english',
+            'description_ar' => 'description in arabic',
+            'description_en' => 'description in arabic',
+            'image' => 'Image',
+            'phone' => 'Phone',
+            'price' => 'Price',
+            'category_id' => 'Category',
+            'name_ar' => 'name in arabic',
+            'name_en' => 'name in english',
+            'email' => 'email',
+            'password' => 'Password',
+            'password_confirmation' => 'Password Confirmation',
+            'address' => 'Address',
+
         ],
     ],
 
@@ -152,6 +167,7 @@ return [
       'description_ar' => 'description in arabic',
       'description_en' => 'description in arabic',
       'image' => 'Image',
+      'phone' => 'Phone',
       'price' => 'Price',
       'category_id' => 'Category',
       'name_ar' => 'name in arabic',

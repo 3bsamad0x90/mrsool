@@ -29,6 +29,11 @@ class User extends Authenticatable
         'image',
         'country_id',
         'dob',
+        'device_token',
+        'active',
+        'otp',
+        'country_code',
+        'is_active',
     ];
 
     /**

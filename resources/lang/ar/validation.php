@@ -132,6 +132,16 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
+            'name' => 'الإسم',
+            'email' => 'البريد الإلكتروني',
+            'password' => 'كلمة المرور',
+            'phone' => 'الهاتف',
+            'country' => 'الدولة',
+            'content' => 'المحتوى',
+            'governorate' => 'المحافظة',
+            'city' => 'المدينة',
+            'address' => 'العنوان',
+            'photo' => 'الصورة',
         ],
     ],
 

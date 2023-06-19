@@ -14,11 +14,12 @@ trait  messageTrait{
         ], Response::HTTP_OK);
     }
 
-    public function failed($msg)
+    public function failed($msg, $errors = [])
     {
         return response()->json([
             'status' => false,
             'message' => $msg,
+            'errors' => $errors
         ], Response::HTTP_NOT_FOUND);
     }
 

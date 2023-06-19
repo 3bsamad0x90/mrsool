@@ -4,6 +4,7 @@
 use App\Http\Controllers\api\home\CountryController;
 use App\Http\Controllers\api\home\HomeController;
 use App\Http\Controllers\api\stores\StoreController;
+use App\Http\Controllers\api\users\AuthinticationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,4 +34,15 @@ Route::group(['prefix' => 'stores'], function(){
 
 Route::group(['prefix'=> 'countries'], function(){
     Route::get('/', [CountryController::class, 'index']);
+});
+
+/**
+ *
+ * //authintication routes
+ *
+ */
+Route::group(['prefix' => 'users'], function () {
+    Route::post('smsOtp', [AuthinticationController::class, 'smsOtp']);
+    Route::post('logout', [AuthinticationController::class, 'logout'])->middleware('auth:sanctum');
+
 });
