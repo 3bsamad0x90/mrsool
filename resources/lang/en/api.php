@@ -41,4 +41,5 @@ return [
     'MaximumImageSizeIs2MB' => 'Maximum Image Size Is 2MB',
     'PleaseEnterYourEmail' => 'Please Enter Your Email',
     'userRegisterSuccessfully' => 'user Register Successfully',
+    'thisPhoneNotActiveOtp' => 'this Phone Not Active Otp',
 ];

@@ -42,4 +42,5 @@ return [
     'MaximumImageSizeIs2MB' => 'يجب أن لا يتجاوز حجم الصورة 2 ميجا بايت',
     'PleaseEnterYourEmail' => 'من فضلك أدخل بريدك الإلكتروني',
     'userRegisterSuccessfully' => 'تم تسجيل البيانات بنجاح',
+    'thisPhoneNotActiveOtp' => 'هذا الهاتف غير مفعل بعد',
 ];

@@ -85,13 +85,15 @@ class AuthModelRepository implements AuthRepository
     {
         try{
             DB::beginTransaction();
+            $phone = otpVerification::where('phone_number', $request->phone)
+            ->where('is_active', 1)
+            ->latest()->first();
+            if (!$phone) {
+                return $this->failed(trans('api.thisPhoneNotActiveOtp'), trans('api.thisPhoneNotActiveOtp'));
+            }
             $data = $request->validated();
             $data['password'] = bcrypt($request->phone);
             $user = User::create($data);
-            $phone = otpVerification::where('phone_number', $request->phone)
-                ->where('is_active', 1)
-                ->latest()
-                ->first();
             $image = null;
             if ($request->hasFile('image')) {
                 $image = upload_image('users/' . $user->id, $request->image);
