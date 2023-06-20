@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\users;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\api\user\UserRegisterRequest;
 use App\Models\country\Country;
 use App\Models\User;
 use App\Models\users\otpVerification;
@@ -79,6 +80,18 @@ class AuthinticationController extends Controller
             return $data;
         }catch(\Exception $ex){
             return $this->failed(trans('api.somethingWrong'), $ex->getMessage());
+        }
+    }
+    public function register(UserRegisterRequest $request){
+        try{
+            $lang = $request->header('Accept-Language');
+            if ($lang == '') {
+                return $this->failed(trans('api.pleaseSendLangCode'));
+            }
+            $data = $this->authRepository->register($request);
+            return $data;
+        }catch(\Exception $e){
+            return $this->failed(trans('api.somethingWrong'), $e->getMessage());
         }
     }
 }

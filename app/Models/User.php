@@ -67,9 +67,16 @@ class User extends Authenticatable
         $lang = app()->getLocale();
         return $this->role()->where('guard', $name)->exists();
     }
+    public function getImageAttribute($value)
+    {   $image = asset('uploads/default/vector.png');
+        if($value != null){
+            $image = asset('uploads/users/' . $this->id . '/' . $value);
+        }
+        return $image;
+    }
     public function photoLink()
     {
-        $image = asset('AdminAssets/app-assets/images/portrait/small/avatar.png');
+        $image = asset('uploads/default/vector.png');
 
         if ($this->image != '') {
             $image = asset('uploads/users/' . $this->id . '/' . $this->image);

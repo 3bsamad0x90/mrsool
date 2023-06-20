@@ -44,6 +44,7 @@ Route::group(['prefix'=> 'countries'], function(){
 Route::group(['prefix' => 'users'], function () {
     Route::post('smsOtp', [AuthinticationController::class, 'smsOtp']);
     Route::post('checkOtp', [AuthinticationController::class, 'checkOtp']);
+    Route::post('register', [AuthinticationController::class, 'register']);
     Route::post('logout', [AuthinticationController::class, 'logout'])->middleware('auth:sanctum');
 
 });

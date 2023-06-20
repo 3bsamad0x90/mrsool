@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Authintication;
 
+use App\Http\Requests\api\user\UserRegisterRequest;
+use App\Http\Resources\users\UserResource;
 use App\Models\User;
 use App\Models\users\otpVerification;
 use App\Repositories\Authintication\AuthRepository;
@@ -70,11 +72,44 @@ class AuthModelRepository implements AuthRepository
                 DB::commit();
                 return $this->successfully(
                     trans('api.dataSendSuccessfully'),
-                    ['phone_number' => $otp_verification->country_code . $otp_verification->phone_number]
+                    ['phone_number' => $otp_verification->phone_number]
                 );
             }
             return $this->failed(trans('api.invalidOtp'), trans('api.OtpDoesNotMatch'));
         } catch (Exception $e) {
+            DB::rollBack();
+            return $this->failed($e->getMessage(), $e->getCode());
+        }
+    }
+    public function register(UserRegisterRequest $request)
+    {
+        try{
+            DB::beginTransaction();
+            $data = $request->validated();
+            $data['password'] = bcrypt($request->phone);
+            $user = User::create($data);
+            $phone = otpVerification::where('phone_number', $request->phone)
+                ->where('is_active', 1)
+                ->latest()
+                ->first();
+            $image = null;
+            if ($request->hasFile('image')) {
+                $image = upload_image('users/' . $user->id, $request->image);
+            }
+            $user->update([
+                'image' => $image ,
+                'country_id' => $phone->country_id,
+                'country_code' => $phone->country_code,
+            ]);
+            $phone->delete();
+            $token = $user->createToken('authToken')->plainTextToken;
+            $data = [
+                'token' => $token,
+                'user' => UserResource::make($user),
+            ];
+            DB::commit();
+            return $this->successfully(trans('api.userRegisterSuccessfully'), $data);
+        }catch(\Exception $e){
             DB::rollBack();
             return $this->failed($e->getMessage(), $e->getCode());
         }
