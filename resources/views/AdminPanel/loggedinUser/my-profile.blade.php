@@ -27,7 +27,7 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-md-3 text-center">
                         <span class="avatar mb-2">
-                            <img class="round" src="{{auth()->user()->photoLink()}}" alt="avatar" height="150"
+                            <img class="round" src="{{auth()->user()->image}}" alt="avatar" height="150"
                                 width="150">
                         </span>
                         <div class="file-loading">
