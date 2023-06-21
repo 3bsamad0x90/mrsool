@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\api\statics\PagesController;
 use App\Http\Controllers\api\home\CountryController;
 use App\Http\Controllers\api\home\HomeController;
 use App\Http\Controllers\api\stores\StoreController;
@@ -34,6 +34,9 @@ Route::group(['prefix' => 'stores'], function(){
 
 Route::group(['prefix'=> 'countries'], function(){
     Route::get('/', [CountryController::class, 'index']);
+});
+Route::group(['prefix'=> 'pages'], function(){
+    Route::get('/', [PagesController::class, 'index']);
 });
 
 /**
