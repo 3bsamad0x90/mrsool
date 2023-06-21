@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\admin\statics;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use App\Models\Pages;
+use App\Http\Requests\pages\StoreRequest;
+use App\Models\statics\Page;
 use Response;
 
 class PagesController extends Controller
 {
     public function index()
     {
-        $pages = Pages::orderBy('id','desc')->paginate(25);
+        $pages = Page::orderBy('id','desc')->paginate(25);
         return view('AdminPanel.pages.index',[
             'active' => 'pages',
             'title' => trans('common.pages'),
@@ -26,22 +25,10 @@ class PagesController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        $rules = [
-            'title_ar' => 'required',
-            'content_ar' => 'required'
-        ];
-        $validator=Validator::make($request->all(),$rules);
-        if($validator->fails())
-        {
-            return redirect()->back()->withErrors($validator)
-                            ->with('faild',trans('api.pleaseRecheckYourDetails'));
-        }
-
-        $data = $request->except(['_token']);
-
-        $page = Pages::create($data);
+        $data = $request->validated();
+        $page = Page::create($data);
         if ($page) {
             return redirect()->back()
                             ->with('success',trans('common.successMessageText'));
@@ -51,13 +38,10 @@ class PagesController extends Controller
         }
 
     }
-
-    public function update(Request $request, $id)
+    public function update(StoreRequest $request, Page $page)
     {
-        $page = Pages::find($id);
-        $data = $request->except(['_token']);
-
-        $update = Pages::find($id)->update($data);
+        $data = $request->validated();
+        $update = $page->update($data);
         if ($update) {
             return redirect()->back()
                             ->with('success',trans('common.successMessageText'));
@@ -65,12 +49,10 @@ class PagesController extends Controller
             return redirect()->back()
                             ->with('faild',trans('common.faildMessageText'));
         }
-
     }
-
-    public function delete($id)
+    public function destroy(Page $page)
     {
-        $page = Pages::find($id);
+        $id = $page->id;
         if ($page->delete()) {
             return Response::json($id);
         }

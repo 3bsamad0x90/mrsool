@@ -5,10 +5,10 @@ use App\Http\Controllers\admin\AdminUsersController;
 use App\Http\Controllers\admin\categories\CategoryController;
 use App\Http\Controllers\admin\ContactMessagesController;
 use App\Http\Controllers\admin\country\CountriesController;
-use App\Http\Controllers\admin\PagesController;
 use App\Http\Controllers\admin\PermissionsController;
 use App\Http\Controllers\admin\RolesController;
 use App\Http\Controllers\admin\SettingsController;
+use App\Http\Controllers\admin\statics\PagesController;
 use App\Http\Controllers\admin\stores\StoreController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,13 +50,6 @@ Route::group(['prefix' => 'AdminPanel', 'middleware' => ['role:admin', 'auth']],
         Route::get('/{permission}/delete', [PermissionsController::class, 'delete'])->name('permissions.delete');
     });
 
-    Route::group(['prefix' => 'pages'], function () {
-        Route::get('/', [PagesController::class, 'index'])->name('admin.pages');
-        Route::post('/create', [PagesController::class, 'store'])->name('admin.pages.store');
-        Route::post('/{id}/edit', [PagesController::class, 'update'])->name('admin.pages.update');
-        Route::get('/{id}/delete', [PagesController::class, 'delete'])->name('admin.pages.delete');
-    });
-
     Route::group(['prefix' => 'contact-messages'], function () {
         Route::get('/', [ContactMessagesController::class, 'index'])->name('admin.contactmessages');
         Route::get('/{id}/details', [ContactMessagesController::class, 'details'])->name('admin.contactmessages.details');
@@ -69,6 +62,7 @@ Route::group(['prefix' => 'AdminPanel', 'middleware' => ['role:admin', 'auth']],
         Route::get('/{key}/deletePhoto', [SettingsController::class, 'deleteSettingPhoto'])->name('settings.deletePhoto');
     });
 
+    Route::resource('pages', PagesController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('stores', StoreController::class);
     Route::resource('countries', CountriesController::class);
