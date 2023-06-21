@@ -116,4 +116,12 @@ class AuthModelRepository implements AuthRepository
             return $this->failed($e->getMessage(), $e->getCode());
         }
     }
+    public function logout(Request $request){
+        $user = auth()->user();
+        if($user){
+            $user->tokens()->delete();
+            return $this->successfully(trans('api.logoutSuccessfully'), []);
+        }
+        return $this->failed(trans('api.someThingWentWrong'));
+    }
 }

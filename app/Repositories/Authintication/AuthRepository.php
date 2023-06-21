@@ -8,5 +8,6 @@ interface AuthRepository {
     public function checkOtpLogin(Request $request);
     public function checkOtpRegister(Request $request);
     public function register(UserRegisterRequest $request);
+    public function logout(Request $request);
 }
 ?>

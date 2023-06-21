@@ -42,4 +42,5 @@ return [
     'PleaseEnterYourEmail' => 'Please Enter Your Email',
     'userRegisterSuccessfully' => 'user Register Successfully',
     'thisPhoneNotActiveOtp' => 'this Phone Not Active Otp',
+    'logoutSuccessfully' => 'logout Successfully',
 ];

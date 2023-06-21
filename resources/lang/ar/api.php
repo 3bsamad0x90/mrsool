@@ -43,4 +43,5 @@ return [
     'PleaseEnterYourEmail' => 'من فضلك أدخل بريدك الإلكتروني',
     'userRegisterSuccessfully' => 'تم تسجيل البيانات بنجاح',
     'thisPhoneNotActiveOtp' => 'هذا الهاتف غير مفعل بعد',
+    'logoutSuccessfully' => 'تم تسجيل الخروج بنجاح',
 ];

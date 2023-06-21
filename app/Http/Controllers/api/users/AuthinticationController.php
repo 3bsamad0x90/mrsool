@@ -94,4 +94,16 @@ class AuthinticationController extends Controller
             return $this->failed(trans('api.somethingWrong'), $e->getMessage());
         }
     }
+    public function logout(Request $request){
+        try{
+            $lang = $request->header('Accept-Language');
+            if ($lang == '') {
+                return $this->failed(trans('api.pleaseSendLangCode'));
+            }
+            $data = $this->authRepository->logout($request);
+            return $data;
+        }catch(\Exception $e){
+            return $this->failed(trans('api.somethingWrong'), $e->getMessage());
+        }
+    }
 }
