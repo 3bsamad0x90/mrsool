@@ -23,12 +23,12 @@ class UserRegisterRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/'],
+            'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'dob' => ['nullable', 'string', 'date'],
             'gender' => ['nullable', 'string', 'in:male,female'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp' , 'max:2048'],
             'device_token' => ['nullable', 'string'],
+            'lat' => ['required'],
+            'lng' => ['required'],
         ];
     }
     public function messages()
@@ -38,11 +38,9 @@ class UserRegisterRequest extends FormRequest
             'email.required' => trans('api.PleaseEnterYourEmail'),
             'name.max' => trans('api.NameMustBeLessThan255Characters'),
             'phone.required' => trans('api.PleaseEnterYourPhone'),
-            'dob.date' => trans('api.PleaseEnterValideDate'),
             'gender.in' => trans('api.PleaseEnterValideGender'),
-            'image.image' => trans('api.PleaseEnterValideImage'),
-            'image.mimes' => trans('api.MimesImage'),
-            'image.max' => trans('api.MaximumImageSizeIs2MB'),
+            'lat.required' => trans('api.PleaseEnterLatitude'),
+            'lat.required' => trans('api.PleaseEnterLongitude '),
         ];
     }
 }

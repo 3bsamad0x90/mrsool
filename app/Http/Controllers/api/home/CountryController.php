@@ -19,7 +19,9 @@ class CountryController extends Controller
                 return $this->failed(trans('api.pleaseSendLangCode'));
             }
             $countries = Country::orderBy('name_' . $lang, 'asc')->get();
-            return $this->successfully(trans('api.dataSendSuccessfully'), CountryResource::collection($countries));
+            return $this->successfully(trans('api.dataSendSuccessfully'), [
+                'countries' => CountryResource::collection($countries),
+            ]);
         } catch (Exception $e) {
             return $e->getMessage();
         }

@@ -29,15 +29,15 @@ class AuthModelRepository implements AuthRepository
                 return $this->failed(trans('api.validationError'), $validater->errors());
             }
             $user = User::where('phone', $request->phone)->first();
+            if($user->is_verified){
+                return $this->failed(trans('api.YouAreAlreadyVerified'));
+            }
             if ($user->otp == $request->otp) {
                 $user->update([
-                    'otp' => null,
-                    'is_active' => 1,
+                    'is_verified' => 1,
                 ]);
-                $token = $user->createToken('authToken')->plainTextToken;
                 $data = [
-                    'token' => $token,
-                    'user' => $user,
+                    'user' => UserResource::make($user),
                 ];
                 DB::commit();
                 return $this->successfully(trans('api.dataSendSuccessfully'), $data);
@@ -67,7 +67,7 @@ class AuthModelRepository implements AuthRepository
             $otp_verification = otpVerification::where('phone_number', $request->phone)->latest()->first();
             if ($otp_verification->otp == $request->otp) {
                 $otp_verification->update([
-                    'is_active' => 1,
+                    'is_verified' => 1,
                 ]);
                 DB::commit();
                 return $this->successfully(
@@ -86,7 +86,7 @@ class AuthModelRepository implements AuthRepository
         try{
             DB::beginTransaction();
             $phone = otpVerification::where('phone_number', $request->phone)
-            ->where('is_active', 1)
+            ->where('is_verified', 1)
             ->latest()->first();
             if (!$phone) {
                 return $this->failed(trans('api.thisPhoneNotActiveOtp'), trans('api.thisPhoneNotActiveOtp'));
@@ -94,14 +94,11 @@ class AuthModelRepository implements AuthRepository
             $data = $request->validated();
             $data['password'] = bcrypt($request->phone);
             $user = User::create($data);
-            $image = null;
-            if ($request->hasFile('image')) {
-                $image = upload_image('users/' . $user->id, $request->image);
-            }
             $user->update([
-                'image' => $image ,
                 'country_id' => $phone->country_id,
                 'country_code' => $phone->country_code,
+                'otp' => $phone->otp,
+                'is_verified' => 1,
             ]);
             $phone->delete();
             $token = $user->createToken('authToken')->plainTextToken;
@@ -119,6 +116,10 @@ class AuthModelRepository implements AuthRepository
     public function logout(Request $request){
         $user = auth()->user();
         if($user){
+            $user->update([
+                'otp' => null,
+                'is_verified' => 0,
+            ]);
             $user->tokens()->delete();
             return $this->successfully(trans('api.logoutSuccessfully'), []);
         }

@@ -18,6 +18,9 @@ class HomeController extends Controller
             if ($lang == '') {
                 return $this->failed(trans('api.pleaseSendLangCode'));
             }
+            $latitude  = (double) request('lat');
+            $longitude = (double) request('lng');
+            
             $stores = Store::with('subStore', 'children')->where('mainStore', '0')->whereStatus('active')->get();
             return $this->successfully(trans('api.dataSendSuccessfully'),
                 ['stores' => StoresResource::collection($stores)]);

@@ -16,7 +16,7 @@ class CountryResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this['name_' . $request->header('Accept-Language')],
+            'name' => strtoupper($this['name_' . $request->header('Accept-Language')]),
             'iso' => $this->iso,
             'iso3' => $this->iso3,
             'code' => $this->phone_code,

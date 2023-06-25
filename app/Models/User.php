@@ -32,8 +32,10 @@ class User extends Authenticatable
         'device_token',
         'active',
         'otp',
+        'is_verified',
         'country_code',
-        'is_active',
+        'lat',
+        'lng',
     ];
 
     /**

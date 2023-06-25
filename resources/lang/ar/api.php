@@ -44,4 +44,7 @@ return [
     'userRegisterSuccessfully' => 'تم تسجيل البيانات بنجاح',
     'thisPhoneNotActiveOtp' => 'هذا الهاتف غير مفعل بعد',
     'logoutSuccessfully' => 'تم تسجيل الخروج بنجاح',
+    'PleaseEnterLatitude' => 'من فضلك أدخل خط العرض',
+    'PleaseEnterLongitude' => 'من فضلك أدخل خط الطول',
+    'YouAreAlreadyVerified' => 'لقد تم تفعيل حسابك بالفعل',
 ];

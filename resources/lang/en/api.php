@@ -43,4 +43,7 @@ return [
     'userRegisterSuccessfully' => 'user Register Successfully',
     'thisPhoneNotActiveOtp' => 'this Phone Not Active Otp',
     'logoutSuccessfully' => 'logout Successfully',
+    'PleaseEnterLatitude' => 'Please Enter Latitude',
+    'PleaseEnterLongitude' => 'Please Enter Longitude',
+    'YouAreAlreadyVerified' => 'You Are Already Verified',
 ];

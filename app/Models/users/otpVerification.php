@@ -14,7 +14,7 @@ class otpVerification extends Model
         'phone_number',
         'country_code',
         'country_id',
-        'is_active'
+        'is_verified'
     ];
 
 }

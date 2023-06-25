@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('otp_verifications', function (Blueprint $table) {
-            $table->boolean('is_verified')->default(0)->after('otp');
+        Schema::table('users', function (Blueprint $table) {
+            $table->double('lat')->after('device_token')->nullable();
+            $table->double('lng')->after('lat')->nullable();
         });
     }
 
@@ -21,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('otp_verifications', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('otp')->after('dob')->nullable();
-            $table->boolean('is_active')->after('otp')->default(0);
+            $table->boolean('is_verified')->after('otp')->default(0);
             $table->string('country_code')->after('country_id')->nullable();
             $table->text('device_token')->after('phone')->nullable();
         });
