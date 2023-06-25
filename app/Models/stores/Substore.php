@@ -2,6 +2,7 @@
 
 namespace App\Models\stores;
 
+use App\Models\stores\Appointment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,8 +15,6 @@ class Substore extends Model
         "description_ar",
         "description_en",
         "cover",
-        "start_work",
-        "end_work",
         "lat",
         "lng",
     ];
@@ -35,11 +34,19 @@ class Substore extends Model
     {
         return $this->store()->count() > 0;
     }
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class, 'substore_id');
+    }
     public function isOpen()
     {
-        $now = date('H:i:s');
-        if ($now >= $this->start_work && $now <= $this->end_work) {
-            return true;
+        $day = date('l');
+        $time = date('H:i:s');
+        $appointment = $this->appointments()->where('day', $day)->first();
+        if ($appointment) {
+            if ($appointment->start_work <= $time && $appointment->end_work >= $time) {
+                return true;
+            }
         }
         return false;
     }

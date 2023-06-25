@@ -17,8 +17,6 @@ return new class extends Migration
             $table->text('description_ar');
             $table->text('description_en');
             $table->string('cover')->nullable();
-            $table->time('start_work')->nullable();
-            $table->time('end_work')->nullable();
             $table->double('lat')->nullable();
             $table->double('lng')->nullable();
             $table->timestamps();

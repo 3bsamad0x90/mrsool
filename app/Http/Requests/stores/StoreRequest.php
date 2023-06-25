@@ -32,13 +32,13 @@ class StoreRequest extends FormRequest
         ];
         if ($this->mainStore == '1') {
             $rules['parent_id'] = 'required|exists:stores,id';
-            $rules['description_ar'] = 'required|string|max:255';
-            $rules['description_en'] = 'required|string|max:255';
+            // $rules['description_ar'] = 'required|string|max:255';
+            // $rules['description_en'] = 'required|string|max:255';
             $rules['cover'] = 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048';
-            $rules['start_work'] = 'nullable|date_format:H:i';
-            $rules['end_work'] = 'nullable|date_format:H:i';
-            $rules['lat'] = 'nullable|numeric';
-            $rules['lng'] = 'nullable|numeric';
+            $rules['start_work'] = ['nullable',];
+            $rules['end_work'] = ['nullable'];
+            $rules['lat'] = 'nullable';
+            $rules['lng'] = 'nullable';
         }
         return $rules;
     }

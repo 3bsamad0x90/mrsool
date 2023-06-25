@@ -17,6 +17,7 @@ class StoreController extends Controller
         $stores = Store::orderBy('mainStore', 'asc')
                 ->orderBy('ordering', 'asc')->paginate(20);
         $stores->load('parent');
+        $mainStores = Store::where('parent_id', 0)->pluck('name_' . app()->getLocale(), 'id')->toArray();
         return view('AdminPanel.stores.index', [
             'active' => 'stores',
             'title' => trans('common.stores'),
@@ -26,7 +27,7 @@ class StoreController extends Controller
                     'text' => trans('common.stores')
                 ]
             ]
-        ], compact('stores'));
+        ], compact('stores', 'mainStores'));
     }
     public function create(){
         $mainStores = Store::where('parent_id', 0)->pluck('name_' . app()->getLocale(), 'id')->toArray();
@@ -57,13 +58,19 @@ class StoreController extends Controller
             if ($request->mainStore == '1') {
                 $subStore = $store->Substore()->create([
                     'store_id' => $store->id,
-                    'description_ar' => $request->description_ar,
-                    'description_en' => $request->description_en,
-                    'start_work' => $request->start_work,
-                    'end_work' => $request->end_work,
+                    // 'description_ar' => $request->description_ar,
+                    // 'description_en' => $request->description_en,
                     'lat' => $request->lat,
                     'lng' => $request->lng,
                 ]);
+                if(isset($request->day)){
+                    for ($i = 0; $i < count($request->day); $i++) {
+                        $data['day'] = $request->day[$i];
+                        $data['start_work'] = $request->start_work[$i];
+                        $data['end_work'] = $request->end_work[$i];
+                        $subStore->appointments()->create($data);
+                    }
+                }
                 if ($request->hasFile('cover')) {
                     $subStore['cover'] = upload_image('subStores/' . $subStore->id, $request->cover);
                     $subStore->update();
@@ -109,8 +116,16 @@ class StoreController extends Controller
         if ($store->image != '') {
             File::deleteDirectory(public_path('uploads/stores/' . $store->id),);
         }
+        if($store->subStore()->count() > 0){
+            foreach($store->subStore as $subStore){
+                if ($subStore->cover != '') {
+                    File::deleteDirectory(public_path('uploads/subStores/' . $subStore->id),);
+                }
+                $subStore->appointments()->delete();
+            }
+            $store->subStore()->delete();
+        }
         if ($store) {
-            $store->subcategories()->delete();
             $store->delete();
             return Response::json($id);
         } else {

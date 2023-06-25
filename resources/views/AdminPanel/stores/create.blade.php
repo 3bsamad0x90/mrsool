@@ -6,6 +6,15 @@
 
         <!-- profile -->
         <div class="card">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <div class="card-body py-2 my-25">
                 {{Form::open(['files'=>'true','class'=>'validate-form', 'route' => 'stores.store'])}}
                 <!-- form -->
@@ -145,13 +154,13 @@
 
                     <div class="col-12 col-md-6 d-none subStore">
                         <label class="form-label" for="lat">{{ trans('common.lat') }}</label>
-                        {{Form::number('lat','',['id'=>'lat','class'=>'form-control', 'step'=>'0.001', 'min'=>0])}}
+                        {{Form::number('lat','',['id'=>'lat','class'=>'form-control', 'step'=>'0.0000000000000001'])}}
                     </div>
                     <div class="col-12 col-md-6 d-none subStore">
                         <label class="form-label" for="lng">{{ trans('common.lng') }}</label>
-                        {{Form::number('lng','',['id'=>'lng','class'=>'form-control', 'step'=>'0.001', 'min'=>0])}}
+                        {{Form::number('lng','',['id'=>'lng','class'=>'form-control', 'step'=>'0.0000000000000001'])}}
                     </div>
-                    <div class="col-12 col-md-12 d-none subStore">
+                    {{-- <div class="col-12 col-md-12 d-none subStore">
                         <label class="form-label" for="description_ar">{{ trans('common.description_ar') }}</label>
                         {{Form::textarea('description_ar','',['rows'=>'3','id'=>'description_ar','class'=>'form-control
                         editor_ar'])}}
@@ -170,7 +179,7 @@
                             <b>{{ $errors->first('description_en') }}</b>
                         </span>
                         @endif
-                    </div>
+                    </div> --}}
                     <div class="col-12 col-md-12 d-none subStore">
                         <label class="form-label" for="cover">{{trans('common.cover')}}</label>
                         {{Form::file('cover',['id'=>'cover', 'class'=>'form-control'])}}
@@ -266,13 +275,9 @@
                                 <label class="form-label" for="optionname">{{trans('common.day')}}</label>
                                 <select class="form-control" name="day[]" id="day">
                                     <option selected disabled>--{{trans('common.SelectedDay')}}--</option>
-                                    <option value= "saturday">{{trans('common.saturday')}}</option>
-                                    <option value= "sunday">{{trans('common.sunday')}}</option>
-                                    <option value= "monday">{{trans('common.monday')}}</option>
-                                    <option value= "tuesday">{{trans('common.tuesday')}}</option>
-                                    <option value= "wednesday">{{trans('common.wednesday')}}</option>
-                                    <option value= "thursday">{{trans('common.thursday')}}</option>
-                                    <option value= "friday">{{trans('common.friday')}}</option>
+                                    @foreach (Days() as $key => $value)
+                                        <option value="{{$key}}">{{$value}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-12 col-sm-3 mb-1">
