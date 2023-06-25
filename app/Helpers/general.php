@@ -34,6 +34,18 @@ function DayMonthOnly($your_date)
 
     return $arabic_date;
 }
+function Days(){
+    $days = array (
+        "saturday"=> trans('common.saturday'),
+        "sunday"=> trans('common.sunday'),
+        "monday"=> trans('common.monday'),
+        "tuesday"=> trans('common.tuesday'),
+        "wednesday"=> trans('common.wednesday'),
+        "thursday"=> trans('common.thursday'),
+        "friday"=> trans('common.friday'),
+    );
+    return $days;
+}
 function getTime($time)
 {
     $time = '';

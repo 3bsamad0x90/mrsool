@@ -377,5 +377,15 @@ return [
     'male' => 'Male',
     'female' => 'Female',
     'dob' => 'Date Of Birth',
-
+    'appointments' => 'Appointments',
+    'day' => 'Day',
+    'saturday' => 'Saturday',
+    'sunday' => 'Sunday',
+    'monday' => 'Monday',
+    'tuesday' => 'Tuesday',
+    'wednesday' => 'Wednesday',
+    'thursday' => 'Thursday',
+    'friday' => 'Friday',
+    'SelectedDay' => 'Selected Day',
+    'SelectDay' => 'Select A Day',
 ];

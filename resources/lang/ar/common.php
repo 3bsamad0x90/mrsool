@@ -450,5 +450,16 @@ return [
     'gender' => 'الجنس',
     'male' => 'ذكر',
     'female' => 'أنثي',
-    'dob' => 'تاريخ الميلاد'
+    'dob' => 'تاريخ الميلاد',
+    'appointments' => 'المواعيد',
+    'day' => 'اليوم',
+    'saturday' => 'السبت',
+    'sunday' => 'الأحد',
+    'monday' => 'الإثنين',
+    'tuesday' => 'الثلاثاء',
+    'wednesday' => 'الأربعاء',
+    'thursday' => 'الخميس',
+    'friday' => 'الجمعة',
+    'SelectedDay' => 'اليوم المحدد',
+    'SelectDay' => 'إختيار اليوم'
 ];

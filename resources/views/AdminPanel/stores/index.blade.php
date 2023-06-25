@@ -124,10 +124,10 @@
 @stop
 
 @section('page_buttons')
-<a href="javascript:;" data-bs-target="#createstore" data-bs-toggle="modal" class="btn btn-primary">
+<a href="{{ route('stores.create') }}"  class="btn btn-primary">
     {{trans('common.CreateNew')}}
 </a>
-@include('AdminPanel.stores.create')
+{{-- @include('AdminPanel.stores.create') --}}
 @stop
 @section('scripts')
 <script>

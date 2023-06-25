@@ -17,7 +17,6 @@ class StoreController extends Controller
         $stores = Store::orderBy('mainStore', 'asc')
                 ->orderBy('ordering', 'asc')->paginate(20);
         $stores->load('parent');
-        $mainStores = Store::where('parent_id', 0)->pluck('name_' . app()->getLocale(), 'id')->toArray();
         return view('AdminPanel.stores.index', [
             'active' => 'stores',
             'title' => trans('common.stores'),
@@ -27,7 +26,24 @@ class StoreController extends Controller
                     'text' => trans('common.stores')
                 ]
             ]
-        ], compact('stores', 'mainStores'));
+        ], compact('stores'));
+    }
+    public function create(){
+        $mainStores = Store::where('parent_id', 0)->pluck('name_' . app()->getLocale(), 'id')->toArray();
+        return view('AdminPanel.stores.create', [
+            'active' => 'stores',
+            'title' => trans('common.stores'),
+            'breadcrumbs' => [
+                [
+                    'url' => route('stores.index'),
+                    'text' => trans('common.stores')
+                ],
+                [
+                     'url' => '',
+                    'text' => trans('common.CreateNew')
+                ]
+            ]
+        ], compact('mainStores'));
     }
     public function store(StoreRequest $request)
     {
