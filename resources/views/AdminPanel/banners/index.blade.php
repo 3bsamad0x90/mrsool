@@ -39,7 +39,7 @@
                                 <img src="{{asset($banner->image)}}" alt="image" class="img-responsive rounded mx-auto d-block" width="100">
                             </td>
                             <td>
-                               {!! $banner->type !!}
+                               {!! $banner->type($banner->type) !!}
                             </td>
                             <td>
                                 {!! $banner->status()  !!}

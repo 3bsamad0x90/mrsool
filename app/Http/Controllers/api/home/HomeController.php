@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\api\home;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\home\BannerResource;
 use App\Http\Resources\home\StoresResource;
+use App\Models\ads\Banner;
 use App\Models\stores\Store;
 use App\Traits\messageTrait;
 use Exception;
@@ -20,10 +22,14 @@ class HomeController extends Controller
             }
             $latitude  = (double) request('lat');
             $longitude = (double) request('lng');
-            
+
             $stores = Store::with('subStore', 'children')->where('mainStore', '0')->whereStatus('active')->get();
+            $banners = Banner::whereStatus(1)->orderBy('ordering', 'asc')->get();
             return $this->successfully(trans('api.dataSendSuccessfully'),
-                ['stores' => StoresResource::collection($stores)]);
+                [
+                    'stores' => StoresResource::collection($stores),
+                    'banners' => BannerResource::collection($banners)
+                ]);
         }catch(Exception $e){
             return $e->getMessage();
         }

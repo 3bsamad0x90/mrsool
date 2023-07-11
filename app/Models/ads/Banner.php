@@ -39,8 +39,8 @@ class Banner extends Model
         return $query->where('type', 'product');
     }
 
-    public function getTypeAttribute($value){
-        if($value == "store"){
+    public function type($value){
+        if ($value == "store") {
             return "<span class='badge badge-light-success'>" . trans('common.store') . "</span>";
         }
         return "<span class='badge badge-light-success'>" . trans('common.product') . "</span>";
