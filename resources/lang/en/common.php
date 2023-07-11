@@ -388,4 +388,8 @@ return [
     'friday' => 'Friday',
     'SelectedDay' => 'Selected Day',
     'SelectDay' => 'Select A Day',
+    'banners' => 'Banners',
+    'select'  => 'Select',
+    'store' => 'Store',
+    'product' => 'product'
 ];

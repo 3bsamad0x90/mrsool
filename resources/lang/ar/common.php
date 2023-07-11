@@ -461,5 +461,9 @@ return [
     'thursday' => 'الخميس',
     'friday' => 'الجمعة',
     'SelectedDay' => 'اليوم المحدد',
-    'SelectDay' => 'إختيار اليوم'
+    'SelectDay' => 'إختيار اليوم',
+    'banners' => 'البنرات',
+    'select' => 'إختيار',
+    'store' => 'متجر',
+    'product' => 'منتج'
 ];

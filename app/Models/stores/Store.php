@@ -2,6 +2,7 @@
 
 namespace App\Models\stores;
 
+use App\Models\ads\Advertisement;
 use App\Models\stores\Substore;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -80,6 +81,10 @@ class Store extends Model
             return true;
         }
         return false;
+    }
+    public function advertisements()
+    {
+        return $this->morphMany(Advertisement::class, 'imageable');
     }
 
 }

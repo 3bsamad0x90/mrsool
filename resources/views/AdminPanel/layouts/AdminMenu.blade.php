@@ -94,6 +94,14 @@
                             </span>
                         </a>
                     </li>
+                    <li class="nav-item @if(isset($active) && $active == 'banners') active @endif">
+                        <a class="d-flex align-items-center" href="{{ route('banners.index') }}">
+                            <i data-feather='circle'></i>
+                            <span class="menu-title text-truncate" data-i18n="{{trans('common.banners')}}">
+                                {{trans('common.banners')}}
+                            </span>
+                        </a>
+                    </li>
                     <li class="nav-item @if(isset($active) && $active == 'categories') active @endif">
                         <a class="d-flex align-items-center" href="#">
                             <i data-feather='circle'></i>

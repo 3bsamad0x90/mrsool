@@ -80,8 +80,4 @@ class Category extends Model
         }
         return false;
     }
-    public function advertisements()
-    {
-        return $this->morphMany(Advertisement::class, 'imageable');
-    }
 }
